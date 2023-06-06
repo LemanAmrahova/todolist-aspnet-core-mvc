@@ -28,14 +28,11 @@ namespace TodoList.Controllers
                 };
                 return RedirectToAction("Todos", tasksDto);
             }
-            else
-            {
-                return RedirectToAction("Todos");
-            }
+            return RedirectToAction("Todos");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AllTaskClassDto model)
+        public async Task<IActionResult> Add(AllTaskClassDto? model)
         {
             if (model.tasks.Id == 0)
             {
