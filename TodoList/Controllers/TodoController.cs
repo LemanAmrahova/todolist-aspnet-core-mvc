@@ -34,23 +34,27 @@ namespace TodoList.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AllTaskClassDto? model)
         {
-            if (model.tasks.Id == 0)
+            if (ModelState.IsValid)
             {
-                Models.Task task = new Models.Task()
+                if (model.tasks.Id == 0)
                 {
-                    Content = model.tasks.Content
-                };
-                taskRepository.AddAsync(task);
+                    Models.Task task = new Models.Task()
+                    {
+                        Content = model.tasks.Content
+                    };
+                    taskRepository.AddAsync(task);
 
-            }
-            else
-            {
-                Models.Task data = new Models.Task()
+                }
+                else
                 {
-                    Id = model.tasks.Id,
-                    Content = model.tasks.Content
-                };
-                taskRepository.UpdateAsync(data);
+                    Models.Task data = new Models.Task()
+                    {
+                        Id = model.tasks.Id,
+                        Content = model.tasks.Content
+                    };
+                    taskRepository.UpdateAsync(data);
+                }
+                return RedirectToAction("Todos");
             }
             return RedirectToAction("Todos");
         }

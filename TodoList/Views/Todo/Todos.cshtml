@@ -55,6 +55,7 @@
                                     <div class="input-group">
                                         <input type="hidden" class="form-control" asp-for="@Model.tasks.Id"/>
                                         <input type="text" class="form-control" asp-for="@Model.tasks.Content" placeholder="Enter a task" />
+                                        <p class="text-danger" asp-validation-for="@Model.tasks.Content"></p>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
                                 </form>
